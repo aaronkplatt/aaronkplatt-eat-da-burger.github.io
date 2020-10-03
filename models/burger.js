@@ -1,8 +1,8 @@
 var orm = require("../config/orm.js");
-
+// cb = call back
 var burger = {
     selectAll: function(cb) {
-      orm.selectAll("burgers", function(res) {
+      return orm.selectAll("burgers", function(res) {
         cb(res);
       });
     },
@@ -17,7 +17,7 @@ var burger = {
         cb(res);
       });
     }
-  };
+};
   
   // Export the database functions for the controller (burger-controller.js).
   module.exports = burger;

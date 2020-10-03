@@ -1,12 +1,12 @@
-<img src="burger-icon.png" alt="Burger Icon">
+<img src="../public/assets/img/burger-icon.png" alt="Burger Icon">
 
 <h1>EAT-DA-BURGER!</h1>
 
 <h2>Havent eaten</h2>
 <ul>
-  {{#each burgers}}
+  {{#each burger_name}}
     {{#unless devoured}}
-      {{!-- {{> devoured = false}}  --}}
+      {{!-- {{> burgers/burger-block devoured = false}}  --}}
     {{/unless}}
   {{/each}}
 </ul>
@@ -15,7 +15,7 @@
 <ul>
   {{#each burgers}}
     {{#if devoured}}
-      {{!-- {{> devoured = true}} --}}
+      {{!-- {{> burgers/burger-block devoured = true}} --}}
     {{/if}}
   {{/each}}
 </ul>
