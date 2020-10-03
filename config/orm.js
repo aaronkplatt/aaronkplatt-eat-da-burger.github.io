@@ -1,11 +1,6 @@
 // Import MySQL connection.
-var connection = require("../config/connection.js");
-var burger = require("../models/burger.js");
-/* In the `orm.js` file, create the methods that will execute the necessary MySQL commands in the controllers. These are the methods you will need to use in order to retrieve and store data in your database.
-
-     * `selectAll()`
-     * `insertOne()`
-     * `updateOne()` */
+var connection = require("./connection.js");
+// var burger = require("../models/burger.js");
 
 // Helper function for SQL syntax.
 function printQuestionMarks(num) {
@@ -41,8 +36,10 @@ function objToSql(ob) {
 
 // Object for all our SQL statement functions.
 var orm = {
-    selectAll: function(tableInput, cb) {
+  //SELECT ALL FUNCTION
+    all: function(tableInput, cb) {
       var queryString = "SELECT * FROM " + tableInput + ";";
+      
       connection.query(queryString, function(err, result) {
         if (err) {
           throw err;
@@ -50,15 +47,17 @@ var orm = {
         cb(result);
       });
     },
-    insertOne: function(table, cols, vals, cb) {
-      var queryString = "INSERT INTO " + table;
+  //INSERT ONE FUNCTION
+    create: function(table, cols, vals, cb) {
+      var queryString = "INSERT INTO " + 
+      table + 
+      " (" +
+      cols.toString() +
+      ") " +
+      "VALUES (" +
+      printQuestionMarks(vals.length) +
+      " )";
   
-      queryString += " (";
-      queryString += cols.toString();
-      queryString += ") ";
-      queryString += "VALUES (";
-      queryString += printQuestionMarks(vals.length);
-      queryString += ") ";
   
       console.log(queryString);
   
@@ -70,8 +69,9 @@ var orm = {
         cb(result);
       });
     },
-    // An example of objColVals would be {burger_name: cheese burger, devoured: false}
-    updateOne: function(table, objColVals, condition, cb) {
+  //UPDATEONE
+  // An example of objColVals would be {burger_name: cheese burger, devoured: false}
+    update: function(table, objColVals, condition, cb) {
       var queryString = "UPDATE " + table;
   
       queryString += " SET ";
