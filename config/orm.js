@@ -1,6 +1,5 @@
 // Import MySQL connection.
 var connection = require("./connection.js");
-// var burger = require("../models/burger.js");
 
 // Helper function for SQL syntax.
 function printQuestionMarks(num) {
