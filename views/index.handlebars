@@ -1,33 +1,39 @@
-<img src="../public/assets/img/burger-icon.png" alt="Burger Icon">
+<div class="container">
+  <div class="main">
+    <img src="../public/assets/img/burger-icon.png" alt="Burger Icon" id="img">
+    <h1>EAT-DA-BURGER!</h1>
+    <form class="create-form">
 
-<h1>EAT-DA-BURGER!</h1>
+      <input type="text" name="burger_name" id="br">
 
-<h2>Havent eaten</h2>
-<ul>
-  {{#each burgers}}
-    {{#unless devoured}}
-    <hr>
-      <span><strong>{{this.burger_name}}</strong></span>
-      <button type="button" data-id="{{this.id}}" data-change-devoured="{{devour}}">DEVOUR IT!</button>
-    {{/unless}}
-  {{/each}}
-</ul>
+      <button type="submit" id="addBurger">Add Burger!</button>
+    </form>
+  </div>
+  <div class="row">
+    <div class="col-md-5 left-side">
+      <h2>Pick A Burger To Devour</h2>
+        <ul>
+          {{#each burgers}}
+            {{#unless devoured}}
+            <hr>
+              <span><strong>{{this.burger_name}}</strong></span>
+              <button type="button" class="change-devoured" data-id="{{this.id}}" data-change-devoured="{{devour}}">DEVOUR IT!</button>
+            {{/unless}}
+          {{/each}}
+        </ul>
+    </div>
+    <div class="col-md-2"></div>
 
-<h2>Gone</h2>
-<ul>
-  {{#each burgers}}
-    {{#if devoured}}
-    <hr>
-      <span><strong>{{this.burger_name}}</strong></span>
-    {{/if}}
-  {{/each}}
-</ul>
-
-
-{{!-- ADDING A BURGER --}}
-<form class="create-form">
-
-  <input type="text" name="burger_name" id="br">
-
-  <button type="submit" id="addBurger">Add Burger!</button>
-</form>
+    <div class="col-md-5 right-side">
+      <h2>Devoured</h2>
+        <ul>
+          {{#each burgers}}
+            {{#if devoured}}
+          <hr>
+              <span><strong>{{this.burger_name}}</strong></span>
+            {{/if}}
+          {{/each}}
+        </ul>
+    </div>
+  </div>
+</div>
